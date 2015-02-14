@@ -26,7 +26,7 @@ void list_differ_tests::run_test_demo()
     
     auto adapter = create_list_adapter(v);
     auto differ(adapter);
-    
+    /* TODO: complete demo */
 }
 
 void list_differ_tests::run_test_simple()

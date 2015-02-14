@@ -62,6 +62,8 @@ class list_adapter<std::set<ItemType>> : public list_interface<ItemType>
         const Container& m_container;
 };
 
+/* TODO: implement adapters for other std containers, then array? */
+
 template <typename ContainerType>
 list_adapter<ContainerType> create_list_adapter(ContainerType& container) {
     return list_adapter<ContainerType>(container);
