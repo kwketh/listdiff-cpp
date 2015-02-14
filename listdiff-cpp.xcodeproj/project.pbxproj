@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD25A35E1A8EBE4D003188B6 /* list_differ_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD25A35C1A8EBE4D003188B6 /* list_differ_tests.cpp */; };
 		DD50AD411A8EB6FB00691B98 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD50AD401A8EB6FB00691B98 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DD25A3521A8EB848003188B6 /* list_differ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list_differ.h; sourceTree = "<group>"; };
+		DD25A3551A8EBB80003188B6 /* list_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list_interface.h; sourceTree = "<group>"; };
+		DD25A3581A8EBB96003188B6 /* list_differ_delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list_differ_delegate.h; sourceTree = "<group>"; };
+		DD25A35A1A8EBC69003188B6 /* list_differ_consts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = list_differ_consts.h; sourceTree = "<group>"; };
+		DD25A35C1A8EBE4D003188B6 /* list_differ_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list_differ_tests.cpp; sourceTree = "<group>"; };
+		DD25A35D1A8EBE4D003188B6 /* list_differ_tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list_differ_tests.h; sourceTree = "<group>"; };
+		DD25A3601A8EC5AE003188B6 /* list_adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list_adapter.h; sourceTree = "<group>"; };
 		DD50AD3D1A8EB6FB00691B98 /* listdiff-cpp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "listdiff-cpp"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD50AD401A8EB6FB00691B98 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +46,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD25A35B1A8EBE3E003188B6 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				DD25A35C1A8EBE4D003188B6 /* list_differ_tests.cpp */,
+				DD25A35D1A8EBE4D003188B6 /* list_differ_tests.h */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
 		DD50AD341A8EB6FB00691B98 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +75,12 @@
 			isa = PBXGroup;
 			children = (
 				DD50AD401A8EB6FB00691B98 /* main.cpp */,
+				DD25A35B1A8EBE3E003188B6 /* tests */,
+				DD25A3521A8EB848003188B6 /* list_differ.h */,
+				DD25A3551A8EBB80003188B6 /* list_interface.h */,
+				DD25A3581A8EBB96003188B6 /* list_differ_delegate.h */,
+				DD25A35A1A8EBC69003188B6 /* list_differ_consts.h */,
+				DD25A3601A8EC5AE003188B6 /* list_adapter.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -118,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD25A35E1A8EBE4D003188B6 /* list_differ_tests.cpp in Sources */,
 				DD50AD411A8EB6FB00691B98 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
