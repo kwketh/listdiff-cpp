@@ -7,9 +7,12 @@
 //
 
 #include <iostream>
+#include "tests/list_differ_tests.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main(int argc, const char * argv[])
+{    
+    list_differ_tests tests;
+    tests.run_tests();
+    
     return 0;
 }
