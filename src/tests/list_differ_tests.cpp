@@ -25,7 +25,16 @@ void list_differ_tests::run_test_demo()
     v.insert(5);
     
     auto adapter = create_list_adapter(v);
-    auto differ(adapter);
+    auto differ = create_list_differ(adapter);
+    
+    v.insert(0);
+    v.erase(4);
+    v.erase(5);
+    v.insert(9);
+    v.insert(10);
+
+    differ.flush_events();
+    
     /* TODO: complete demo */
 }
 

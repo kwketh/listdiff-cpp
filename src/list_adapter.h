@@ -13,7 +13,7 @@
 #include <assert.h>
 #include "list_interface.h"
 
-// Partial template specialization
+/* Partial template specialization */
 
 template <typename ValueType>
 class list_adapter {};
@@ -21,48 +21,75 @@ class list_adapter {};
 template <>
 class list_adapter<void> {};
 
-/** 
- * List adapter for 'std::set'
+/**
+ * List adapter implementation for std::set
+ *
+ * @properties
+ *   associative
+ *   ordered
+ *   unique
  */
 template <class ItemType>
 class list_adapter<std::set<ItemType>> : public list_interface<ItemType>
 {
-    typedef std::set<ItemType> Container;
-    typedef typename Container::const_iterator ConstIter;
     public:
-        list_adapter(const Container& container) : m_container(container) {};
-    
-        inline list_index index_of(ItemType it) const
+        typedef std::set<ItemType> container_type;
+        typedef typename container_type::const_iterator const_iter;
+        typedef ItemType item_type;
+        
+        list_adapter(const container_type& container) : m_container(container) {};
+        
+        inline list_index index_of(ItemType value) const
         {
-            ConstIter i = m_container.find(it);
-            if (i == m_container.end())
+            const_iter iter = m_container.find(value);
+            if (iter == m_container.end())
                 return -1;
-            return std::distance(m_container.begin(), i);
+            return std::distance(m_container.begin(), iter);
         }
-    
+        
+        inline bool less_than(ItemType value1, ItemType value2) const
+        {
+            return m_container.value_comp()(value1, value2);
+        }
+        
+        inline bool are_equal(ItemType value1, ItemType value2) const
+        {
+            return !(less_than(value1, value2)) && !(less_than(value2, value1));
+        }
+        
         inline ItemType at(list_index index) const
         {
             assert(index < size());
-            ConstIter it = m_container.begin();
-            std::advance(it, index);
-            return *it;
+            const_iter iter = m_container.begin();
+            std::advance(iter, index);
+            return *iter;
         }
-    
+        
         inline bool exists(ItemType value) const
         {
             return m_container.find(value) != m_container.end();
         }
-    
+        
         inline size_t size() const
         {
             return m_container.size();
         }
         
+        inline bool is_ordered() const
+        {
+            return true;
+        }
+        
+        const container_type& get_container() const
+        {
+            return m_container;
+        }
+        
+        
     private:
-        const Container& m_container;
+        const container_type& m_container;
 };
 
-/* TODO: implement adapters for other std containers, then array? */
 
 template <typename ContainerType>
 list_adapter<ContainerType> create_list_adapter(ContainerType& container) {
