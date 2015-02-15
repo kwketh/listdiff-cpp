@@ -36,7 +36,19 @@ void list_differ_tests::run_test_demo()
 
     differ.flush_events();
     
-    /* TODO: complete demo */
+    while (differ.count_events(ITEM_REMOVED) > 0)
+    {
+        auto event = differ.top_event(ITEM_REMOVED);
+        printf("value of %i was removed from index %zu\n", event.value, event.index);
+        differ.pop_event(ITEM_REMOVED);
+    }
+    
+    while (differ.count_events(ITEM_INSERTED) > 0)
+    {
+        auto event = differ.top_event(ITEM_INSERTED);
+        printf("value of %i was inserted at index %zu!\n", event.value, event.index);
+        differ.pop_event(ITEM_INSERTED);
+    }
 }
 
 void list_differ_tests::run_test_simple()

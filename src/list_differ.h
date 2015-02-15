@@ -13,32 +13,17 @@
 
 #include "list_interface.h"
 #include "list_differ_delegate.h"
-
-enum list_event_type
-{
-    ITEM_INSERTED = 0,
-    ITEM_REMOVED,
-    ITEM_MOVED
-};
-
-template <class T> /* Item type */
-struct list_event_typed
-{
-    typedef T list_value_type;
-    list_event_typed(list_event_type _type, list_index _index, list_value_type _value)
-        : type(_type), index(_index), value(_value) {};
-    list_event_type type;
-    list_index index;
-    list_value_type value;
-};
+#include "list_event.h"
 
 template <class T> /* Adapter type */
 class list_differ
 {
+    typedef T adapter_type;
     typedef typename T::item_type item_type;
     typedef typename T::container_type container_type;
+    
     typedef list_event_typed<item_type> list_event;
-    typedef typename std::list<list_event> list_events;
+    typedef std::list<list_event> list_events;
 
     public:
         list_differ(const T& list) : m_list(list), m_list_prev(m_container_prev)
@@ -91,19 +76,29 @@ class list_differ
         {
             if (m_list.is_ordered())
             {
-                list_events insertions;
-                list_events deletions;
+                list_events& insertions = m_events[list_event_type::ITEM_INSERTED];
+                list_events& deletions = m_events[list_event_type::ITEM_REMOVED];
                 compare_ordered_list(m_list_prev, m_list, insertions, deletions);
-                for (list_event event : deletions)
-                    printf("  %i was removed from index %i!\n", event.value, event.index);
-                for (list_event event : insertions)
-                    printf("  %i was inserted at index %i!\n", event.value, event.index);
             }
             sync();
         }
     
-    private:
+        list_event& top_event(list_event_type type)
+        {
+            return m_events[type].front();
+        }
     
+        void pop_event(list_event_type type)
+        {
+            return m_events[type].pop_front();
+        }
+    
+        size_t count_events(list_event_type type)
+        {
+            return m_events[type].size();
+        }
+    
+    private:
         /**
          * Synchronises previous list with current state.
          * via copy operator.
@@ -113,10 +108,10 @@ class list_differ
             m_container_prev = m_list.get_container();
         }
     
-        const T& m_list;
-        const T m_list_prev;
+        const adapter_type& m_list;
+        const adapter_type m_list_prev;
         container_type m_container_prev;
-        list_differ_delegate<item_type>* m_delegate;
+        list_events m_events[list_event_type::LAST];
 };
 
 template <typename AdapterType>
