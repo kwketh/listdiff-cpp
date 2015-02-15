@@ -10,6 +10,7 @@
 #include "list_differ_tests.h"
 #include "list_differ.h"
 #include "list_adapter.h"
+#include <adapters/list_adapter_stdset.h>
 
 void list_differ_tests::run_tests()
 {
