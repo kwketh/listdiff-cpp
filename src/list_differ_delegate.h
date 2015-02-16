@@ -14,11 +14,8 @@
 template <class T>
 struct list_differ_delegate
 {
-    typedef typename T::item_type item_type;
-    typedef list_event_typed<item_type> list_event;
-    typedef std::list<list_event> list_events;
-    
-    virtual void event_items_inserted(list_events& events) = 0;
-    virtual void event_items_removed(list_events& events) = 0;
-    virtual void event_items_moved(list_events& events) = 0;
+    typedef typename T::item_type item_type;    
+    virtual void event_items_inserted(event_list& events) = 0;
+    virtual void event_items_removed(event_list& events) = 0;
+    virtual void event_items_moved(event_list& events) = 0;
 };
