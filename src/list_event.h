@@ -26,3 +26,14 @@ struct list_event
 };
 
 typedef std::list<list_event> event_list;
+
+/* --- TODO ---
+ *
+ * add namespacing. to avoid confusion between 
+ * 'event_list' and 'list_event', 'ldcpp' 
+ * namespace would seem reasonable.
+ *
+ * ldcpp::event
+ * ldcpp::event_list 
+ *
+ * --- --- --- --- --- --- --- --- --- --- --- */
