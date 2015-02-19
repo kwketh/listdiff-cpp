@@ -8,12 +8,15 @@
 
 #pragma once
 
-class list_differ_tests
+namespace ldcpp
 {
-    public:
-        void run_tests();
+    class differ_tests
+    {
+        public:
+            void run_tests();
 
-    private:
-        void run_test_demo();
-        void run_test_simple();
-};
+        private:
+            void run_test_demo();
+            void run_test_simple();
+    };
+}

@@ -12,13 +12,15 @@
 #include "list_adapter.h"
 #include <adapters/list_adapter_stdset.h>
 
-void list_differ_tests::run_tests()
+using namespace ldcpp;
+
+void differ_tests::run_tests()
 {
     run_test_simple();
     run_test_demo();
 }
 
-void list_differ_tests::run_test_demo()
+void differ_tests::run_test_demo()
 {
     std::set<int> v;
     v.insert(1);
@@ -26,7 +28,7 @@ void list_differ_tests::run_test_demo()
     v.insert(5);
     
     auto adapter = create_list_adapter(v);
-    auto differ = create_list_differ(adapter);
+    auto differ = create_differ(adapter);
     
     v.insert(0);
     v.erase(4);
@@ -51,7 +53,7 @@ void list_differ_tests::run_test_demo()
     }
 }
 
-void list_differ_tests::run_test_simple()
+void differ_tests::run_test_simple()
 {
     std::set<int> v;
     v.insert(1);

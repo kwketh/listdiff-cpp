@@ -11,19 +11,22 @@
 #include <cstddef>
 #include "list_differ_consts.h"
 
-template <class ItemType>
-struct list_interface
+namespace ldcpp
 {
-    /* List operations */
-    virtual list_index index_of(ItemType value) const = 0;
-    virtual ItemType at(list_index index) const = 0;
-    virtual bool exists(ItemType value) const = 0;
-    virtual size_t size() const = 0;
-    
-    /* List properties */
-    virtual bool is_ordered() const = 0;
-    
-    /* Implement if list has non-default comparators */
-    virtual bool are_equal(ItemType value1, ItemType value2) const { return value1 == value2; };
-    virtual bool less_than(ItemType value1, ItemType value2) const { return value1 < value2; };
-};
+    template <class ItemType>
+    struct list_interface
+    {
+        /* List operations */
+        virtual list_index index_of(ItemType value) const = 0;
+        virtual ItemType at(list_index index) const = 0;
+        virtual bool exists(ItemType value) const = 0;
+        virtual size_t size() const = 0;
+        
+        /* List properties */
+        virtual bool is_ordered() const = 0;
+        
+        /* Implement if list has non-default comparators */
+        virtual bool are_equal(ItemType value1, ItemType value2) const { return value1 == value2; };
+        virtual bool less_than(ItemType value1, ItemType value2) const { return value1 < value2; };
+    };
+}

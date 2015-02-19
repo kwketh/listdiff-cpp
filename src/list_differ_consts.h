@@ -8,4 +8,7 @@
 
 #pragma once
 
-typedef long list_index;
+namespace ldcpp
+{
+    typedef long list_index;
+}
