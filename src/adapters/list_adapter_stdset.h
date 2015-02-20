@@ -25,7 +25,7 @@ namespace ldcpp
             typedef std::set<ItemType> container_type;
             typedef typename container_type::const_iterator const_iter;
             typedef ItemType item_type;
-            
+        
             list_adapter(const container_type& container) : m_container(container) {};
             
             inline list_index index_of(ItemType value) const
@@ -36,14 +36,14 @@ namespace ldcpp
                 return std::distance(m_container.begin(), iter);
             }
             
-            inline bool less_than(ItemType value1, ItemType value2) const
+            inline int compare(ItemType value1, ItemType value2) const
             {
-                return m_container.value_comp()(value1, value2);
-            }
-            
-            inline bool are_equal(ItemType value1, ItemType value2) const
-            {
-                return !(less_than(value1, value2)) && !(less_than(value2, value1));
+                if (m_container.value_comp()(value1, value2))
+                    return -1;
+                else if (m_container.value_comp()(value2, value1))
+                    return 1;
+                else
+                    return 0;
             }
             
             inline ItemType at(list_index index) const
@@ -53,7 +53,7 @@ namespace ldcpp
                 std::advance(iter, index);
                 return *iter;
             }
-            
+        
             inline bool exists(ItemType value) const
             {
                 return m_container.find(value) != m_container.end();
@@ -73,7 +73,6 @@ namespace ldcpp
             {
                 return m_container;
             }
-            
             
         private:
             const container_type& m_container;

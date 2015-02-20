@@ -26,7 +26,6 @@ namespace ldcpp
         virtual bool is_ordered() const = 0;
         
         /* Implement if list has non-default comparators */
-        virtual bool are_equal(ItemType value1, ItemType value2) const { return value1 == value2; };
-        virtual bool less_than(ItemType value1, ItemType value2) const { return value1 < value2; };
+        virtual int compare(ItemType value1, ItemType value2) const = 0;        
     };
 }

@@ -28,31 +28,30 @@ namespace ldcpp
         {
             T value1 = list1.at(i1);
             T value2 = list2.at(i2);
-            if (list1.less_than(value1, value2))
+            int cmp = list1.compare(value1, value2);
+            if (cmp < 0)
             {
-                insertions.push_back(event(ITEM_INSERTED, i1));
+                deletions.push_back(event(ITEM_REMOVED, i1));
                 i1++;
             } else
-            if (list1.less_than(value2, value1))
+            if (cmp > 0)
             {
-                deletions.push_back(event(ITEM_INSERTED, i2));
+                insertions.push_back(event(ITEM_INSERTED, i2));
                 i2++;
             } else
             {
-                assert(list1.are_equal(value1, value2));
                 i1++, i2++;
             }
         }
         while (i1 < list1.size())
         {
-            insertions.push_back(event(ITEM_INSERTED, i1));
+            deletions.push_back(event(ITEM_REMOVED, i1));
             i1++;
         }
         while (i2 < list2.size())
         {
-            deletions.push_back(event(ITEM_REMOVED, i2));
+            insertions.push_back(event(ITEM_INSERTED, i2));
             i2++;
         }
     }
-
 }
