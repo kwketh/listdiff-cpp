@@ -1,20 +1,20 @@
 # listdiff-cpp
-This project is still in development and is not complete. It aims to
-solve comparing a list and it's previous state at any point of time,
+This project is still in development and may lack enough information,
+however the example below is fully functional. The aim is to solve
+comparing containers and their previous state at any point of time,
 therefore enabling to fire animations on demand and/or on request.
 
 This is particurally useful when i.e. switching between different 
 user interface views, you may want to fire all animations in the
 list (additions, removals and index changes) all at once when the 
 view appears as opposed to it happening in background and user not
-seeing the animations. There are many potential use cases I will
-elloboate at later stages of this project.
+seeing the animations. If well used and implemented, the user can
+see data changes with more clarity.
 
-The library is very flexible where any collection of objects can 
-be used to compare itself with previous state as long an adapter
-implements `list_interface` and the list is copyable.
+There are possibly many potential use cases I may elaborate at later
+stages of this project.
 
-### Example of use
+### Example
 ```
 std::set<int> v;
 v.insert(1);
@@ -46,6 +46,12 @@ while (differ.count_events(ITEM_INSERTED) > 0)
     differ.pop_event(ITEM_INSERTED);
 }
 ```
+
+## Implementing new containers
+
+The library is very flexible where any container can be used to 
+compare itself with previous state as long an adapter implements 
+`list_interface` and the list is *copyable*.
 
 ## License
 
